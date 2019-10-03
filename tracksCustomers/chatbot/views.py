@@ -3,27 +3,43 @@ from django.http import HttpResponse
 import json
 from django.views.decorators.csrf import csrf_exempt
 
-from .chatbot import *
+from .file_handler import *
+from .validate_truck import *
+truk_dict={}
 
-
-# Train based on the english corpus
-
-#Already trained and it's supposed to be persistent
-# chatbot.train("chatterbot.corpus.english")
 
 @csrf_exempt
-def get_response(request):
-    response = {'status': None}
+def load_question(request):
+    if request.method=='POST':
+        counter=int(request.POST['count'])
+        if counter<len(questions):
+            data = json.dumps({
+            'counter': len(questions),
+            'question': questions[counter],
+            
+    })
+            return HttpResponse(data, content_type='application/json')
+        else:
+            return HttpResponse(json.dumps({'counter': len(questions),'question': "Your truck is registered successfully"}), content_type='application/json')
+
+
+
+@csrf_exempt
+def store(request):
+   
     if request.method == 'POST':
         message=request.POST['message']
-        chat_response = chatbot.get_response(message).text
-		# response['message'] = {'text': chat_response, 'user': False, 'chat_bot': True}
-		# response['status'] = 'ok'
-        return HttpResponse(chat_response)
-    # else:
-    #     return HttpResponse('no response')
-
-
+        counter=int(request.POST['count'])
+        # if validate_input(message,counter):
+        #     print("validated")
+        # else:
+        #     return HttpResponse('')
+        if counter>=0 and counter<=len(fieldnames)-1:
+            truk_dict[fieldnames[counter]]=message
+            return HttpResponse('')
+        else:
+            dump_to_csv(truk_dict)
+            return HttpResponse("done")
 
 def home(request):
 	return render(request,"chatbot/chat.html")
