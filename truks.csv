@@ -1,2 +1,6 @@
 fleet_no,brand,model,type,engine_size,no_of_wheels,weight_kg,customer,date
-23432,sadf,asfd,asf,asdf,asfd,sad,fas,2019-10-03
+34,man,FUSO,diesel,45,67,34,Sahim,2019-10-04
+34,man,FUSO,diesel,45,56,45,sahim,2019-10-04
+34,man,FUSO,diesel,34,56,45,Sahim,2019-10-04
+32,man,FUSO,diesel,34,23,45,sahim,2019-10-05
+23,man,MAN TGX EVOLION,diesel,45,67,45,karim,2019-10-05
