@@ -1,0 +1,13 @@
+{
+    "brand": {
+        "MAN":["MAN TGX EVOLION","MAN XLION","MAN TGE","CitE","eTGM"],
+        "Volvo":["Volvo S60","Volvo S60 Cross Country","Volvo S60 Hybrid","Volvo S60 Inscription","Volvo S90"],
+        "Daimler":["FUSO","Freightliner","mercedes-benz","western star","bharatbenz"]
+
+    },
+
+    "type":["Petrol","Gas","Diesel"]
+    
+
+
+}

@@ -7,28 +7,38 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'chatbot/css/chat.css' %}">
 <link rel="stylesheet" href="{% static 'chatbot/css/bootstrap.min.css' %}">
-
-
+<title>ChatBot</title>
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class=" col-lg-offset-2 col-lg-8" style="margin-top: 30px" >
-<div class="messaging">
+  <div class="messaging">
       <div class="inbox_msg">
       
         <div class="mesgs">
           <div class="msg_history">
-           
             
+            <div class="incoming_msg">
+              <div class="incoming_msg_img"> <img src="{% static 'chatbot/images/user-profile.png' %}" alt="sunil"> </div>
+              <div class="received_msg">
+                <div class="received_withd_msg">
+                  <p>Tracks GmbH is a predictive fuel analytics and predicts your fuel consumption to help your truck fleet to reduce fuel consumption</p>
+                  <p> I am an automated bot deployed by Tracks GmbH to register your truck. Please answer the following questions.</p>
+                  <p></p>
+              </div>
+              <p></p>
+              <p></p>
             </div>
+            
           </div>
-          <div class="type_msg">
+        </div>
+        <div class="type_msg">
             <div class="input_msg_write">
               <input type="text" id = "write_msg" name="message" class="write_msg" placeholder="Type a message" />
               <button class="msg_send_btn" id = "msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
-          </div>
+        </div>
         </div>
       </div>
       </div>
@@ -41,57 +51,7 @@
 
     <script src="{% static 'chatbot/js/jquery.js' %}"></script>
 
-    <script>
-
-        var sendMessage=function(){
-            var message =  $("#write_msg").val();
-            var token = '{{csrf_token}}';
-                $.ajax({
-                  type:'POST',
-                  headers: { "X-CSRFToken": token },
-                  url: "/chatbot/get_response/",
-                  data:{
-                    message:$('#write_msg').val()
-                    },
-                  success: function(result){
-                    $(".msg_history").append(`  <div class="incoming_msg">
-                      <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                      <div class="received_msg">
-                        <div class="received_withd_msg">
-                          <p>${result}</p>
-                          <span class="time_date"> 11:01 AM    |    Today</span></div>
-                      </div>
-                    </div>
-
-`)
-                }});
-              
-
-
-            $(".msg_history").append(`
-
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>${message}</p>
-                <span class="time_date"> 11:01 AM    |    Today</span> </div>
-            </div>
-            
-            `)
-
-
-            $("#write_msg").val('');
-        }
-
-
-      $('#write_msg').keypress(function(){
-        if(event.which==13){
-          sendMessage();
-        }
-      })
-
-      $('#msg_send_btn').click(sendMessage);
-    
-    </script>
+    <script src="{% static 'chatbot/js/message.js' %}"> </script>
 
     </body>
     </html> 
